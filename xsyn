@@ -1,0 +1,21 @@
+#!/bin/bash
+
+QRY="${1:?NO_INPUT}"
+LEN="${2}"
+URL="https://crosswords.us.wordsdb.ws/"
+if ((LEN)); then
+  printf -v mask "%0.s*" $(seq 1 "$LEN")
+  URL+="clue?page=1&slug=${QRY}&pagination=true&answerLimit=0&"
+  URL+="numberOfChar=${LEN}&answerletters=${mask}"
+  SEL='.data[].answer'
+else
+  URL+="synonyms/${QRY}"
+  SEL='.synonym_groups[].synonyms[].synonym_word.word'
+fi
+
+curl -s "$URL" |
+  jq -r "$SEL" |
+  sort |
+  uniq |
+  column -x |
+  yank -- xsel --clipboard --trim
