@@ -4,7 +4,7 @@ XSYN
 <div align=center>
   <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="50%">
   <h2>XSYN</h2>
-  <h5>get similar words with fix length</h5>
+  <h4>get similar words with fix length</h4>
 </div>
 
 ```ex
