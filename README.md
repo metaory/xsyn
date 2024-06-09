@@ -4,7 +4,7 @@ XSYN
 <div align=center>
   <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="50%">
   <h2>XSYN</h2>
-  <h5>get fixed length similar words</h5>
+  <h5>get similar words with fix length</h5>
 </div>
 
 ```ex
@@ -26,7 +26,7 @@ EXAMPLES
 
 	# get similar words to done with 7 characters
 	xsyn done 7
-		# ALLOVER	ATANEND	CORRECT	THROUGH	YIELDED
+		# ALLOVER	ATTEND	CORRECT	THROUGH	YIELDED
 
 	# get similar words to done with 4 characters
 	xsyn done 4
@@ -76,7 +76,7 @@ cd xsyn
 chmod +x xsyn
 
 # Link it somewhere in your PATH
-ln -sfv xsyn /usr/bin/xsyn
+ln -svf $PWD/xsyn /usr/bin/xsyn
 
 # Use it anywhere
 
