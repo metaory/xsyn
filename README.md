@@ -2,7 +2,7 @@ XSYN
 ====
 
 <div align=center>
-  <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="50%">
+  <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="168px">
   <h2>XSYN</h2>
   <h4>get similar words with fix length</h4>
 </div>
@@ -47,13 +47,12 @@ EXAMPLES
 
 Requirements
 ------------
-
-- [column](https://archlinux.org/packages/?q=column)
-- [curl](https://github.com/curl/curl)
 - [jq](https://archlinux.org/packages/?q=jq)
+- [curl](https://github.com/curl/curl)
 - [sort](https://archlinux.org/packages/?q=sort)
 - [uniq](https://archlinux.org/packages/?q=uniq)
 - [yank](https://archlinux.org/packages/?q=yank)
+- [column](https://archlinux.org/packages/?q=column)
 
 ---
 
