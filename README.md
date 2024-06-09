@@ -1,6 +1,3 @@
-XSYN
-====
-
 <div align=center>
   <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="168px">
   <h2>XSYN</h2>
