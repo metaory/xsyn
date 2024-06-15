@@ -1,5 +1,15 @@
 #!/bin/bash
 
+declare -a REQ=('curl' 'jq' 'sort' 'uniq' 'column' 'tee' 'yank')
+
+for req in "${REQ[@]}"; do
+  echo -e "check" "\e[36m${req}\e[0m"
+  command -v "${req}" >/dev/null || {
+    echo -e "\e[31m ❌ MISSING_REQUIREMENT" "\e[1;33m${req}\e[0m"
+    exit 1
+  }
+done
+
 QRY="${1:?NO_INPUT}"
 LEN="${2}"
 URL="https://crosswords.us.wordsdb.ws/"
@@ -12,10 +22,15 @@ else
   URL+="synonyms/${QRY}"
   SEL='.synonym_groups[].synonyms[].synonym_word.word'
 fi
-
+tmp=$(mktemp)
 curl -s "$URL" |
   jq -r "$SEL" |
   sort |
   uniq |
   column -x |
+  tee "${tmp}" |
   yank -- xsel --clipboard --trim
+
+viewer='cat'
+command -v tspin &>/dev/null && viewer=tspin
+$viewer <"$tmp"
