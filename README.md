@@ -52,15 +52,15 @@ EXAMPLES
 
 # Synonym
   xsyn sn ocean
-	# → sea
+	# sea
 
 # Noun
   xsyn nn gradual
-	# → increase
+	# increase
 
 # Adjective
   xsyn aj beach
-	# → sandy
+	# sandy
 ```
 
 <!--
