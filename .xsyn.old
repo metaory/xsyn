@@ -1,0 +1,63 @@
+#!/bin/bash
+
+#  ▀  SHELLOPTS
+# ▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔▔
+set -o errexit
+set -o errtrace
+set -o pipefail
+set -o noclobber
+
+declare -a REQ=('curl' 'jq' 'sort' 'uniq' 'column' 'tee' 'yank')
+
+C='\e[0m'; for i in {0..10}; do declare -g "C${i}"="\e[1;3${i}m"; done
+
+function cleanup {
+  local code="$?"
+  ((c = code ? 1 : 2))
+  c="C${c}"
+  echo -e "${!c}" "E:$code" "Q:$QRY" "L:$LEN\n"
+  echo -e "${C3}${RES}${C}"
+}
+
+trap cleanup INT SIGINT SIGTERM EXIT
+
+for req in "${REQ[@]}"; do
+    command -v "$req" >/dev/null || {
+        echo -e "\e[31m ❌ MISSING_REQUIREMENT" "\e[1;33m${req}\e[0m"
+        exit 1
+    }
+done
+
+RES=''
+QRY="${1:?NO_INPUT}"
+LEN="${2:-}"
+URL="https://crosswords.us.wordsdb.ws/"
+if ((LEN)); then
+    printf -v mask "%0.s*" "$(seq 1 "$LEN")"
+    URL+="clue?page=1&slug=${QRY}&pagination=true&answerLimit=0&"
+    URL+="numberOfChar=${LEN}&answerletters=${mask}"
+    SEL='.data[].answer'
+    SEL_CHK='.data | length'
+else
+    URL+="synonyms/${QRY}"
+    SEL='.synonym_groups[].synonyms[].synonym_word.word'
+    SEL_CHK='.synonym_groups | length'
+fi
+
+
+RAW="$(curl -s "$URL")"
+
+RES=$(jq "$SEL_CHK" <<< "$RAW")
+
+! (( RES )) && echo -e " ${C3}[ NO_RES ]" && exit 1
+
+echo -e "Found ${C3}${RES}${C}\n"
+
+RES=$(jq -r "$SEL" <<< "$RAW" | sort | uniq | column -x )
+
+echo "$RES" | yank -- xsel --clipboard --trim
+
+# TODO: handle stdin
+# [ -t 0 ] && cat "$TMP"
+
+# vim: ft=bash
