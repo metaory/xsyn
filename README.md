@@ -52,15 +52,15 @@ EXAMPLES
 		# pelagic		seawater
 
 # Synonym
-	xsyn sn ocean
+  xsyn sn ocean
 		# sea
 
 # Noun
-	xsyn nn gradual
+  xsyn nn gradual
 		# increase
 
 # Adjective
-	xsyn aj beach
+  xsyn aj beach
 	  # sandy
 ```
 
