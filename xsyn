@@ -3,8 +3,8 @@
 (("$#")) || exit 1
 
 URL='https://api.datamuse.com'
+MAX="${XSYN_MAX:-80}"
 QRY=("$@")
-MAX=20
 OFS=1
 SEL=$1
 

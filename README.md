@@ -35,6 +35,12 @@ TYPES
   aj 	Adjective (Google Books Ngrams)
 		# beach → sandy
 
+
+ENVIRONMENT VARIABLES ~
+	XSYN_MAX  |  Maximum number of results to return,
+	               not to exceed 1000. (default: 80)
+
+XSYN_MAX
 .
 EXAMPLES
 
