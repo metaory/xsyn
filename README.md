@@ -1,7 +1,6 @@
 <div align=center>
   <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="168px">
   <h2>XSYN</h2>
-  <h4>get similar words <s>with fix length</s></h4>
 </div>
 
 > [!Note]
@@ -25,16 +24,16 @@ DESCRIPTION
 
 TYPES
   ml 	MeanLike [DEFAULT] (OneLook)
-	# sea expanse oceanic seabed seafloor oceanographic pelagic oceanography marine midstream coast pond water seawater waters seaway bucket marina seagoing seafaring
+		# ocean → sea expanse oceanic seabed seafloor oceanographic pelagic oceanography marine midstream coast pond water seawater waters seaway bucket marina seagoing seafaring
 
   sn 	Synonym (WordNet synset)
-	# ocean → sea
+		# ocean → sea
 
   nn 	Noune (Google Books Ngrams)
-	# gradual → increase
+		# gradual → increase
 
   aj 	Adjective (Google Books Ngrams)
-	# beach → sandy
+		# beach → sandy
 
 .
 EXAMPLES
@@ -44,24 +43,24 @@ EXAMPLES
     # same as
   xsyn ocean
 		# sea		oceanography	waters
-		# expanse		marine		seaway
-		# oceanic		midstream	bucket
-		# seabed		coast		marina
+		# expanse	marine		seaway
+		# oceanic	midstream	bucket
+		# seabed	coast		marina
 		# seafloor	pond		seagoing
 		# oceanographic	water		seafaring
-		# pelagic		seawater
+		# pelagic	seawater
 
 # Synonym
   xsyn sn ocean
-		# sea
+	# → sea
 
 # Noun
   xsyn nn gradual
-		# increase
+	# → increase
 
 # Adjective
   xsyn aj beach
-	  # sandy
+	# → sandy
 ```
 
 <!--
