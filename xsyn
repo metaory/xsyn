@@ -25,7 +25,7 @@ grep -qv "$1" <<<"${!OPTS[@]}" && {
 I="${OPTS[$SEL]}"
 Q="${I}=$(tr ' ' '+' <<<"${QRY[@]:$OFS}")"
 U="${URL}/words?${Q}&max=$MAX"
-J='.[].word|gsub("[ ]";"_")'
+J='map(.word)|sort_by(length)[]|gsub("[ ]";"_")'
 
 curl -s "$U" |
   jq '.' |
