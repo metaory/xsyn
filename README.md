@@ -42,13 +42,13 @@ EXAMPLES
   xsyn ml ocean
     # same as
   xsyn ocean
-		# sea		oceanography	waters
-		# expanse	marine		seaway
-		# oceanic	midstream	bucket
-		# seabed	coast		marina
-		# seafloor	pond		seagoing
-		# oceanographic	water		seafaring
-		# pelagic	seawater
+	# sea		oceanography	waters
+	# expanse	marine		seaway
+	# oceanic	midstream	bucket
+	# seabed	coast		marina
+	# seafloor	pond		seagoing
+	# oceanographic	water		seafaring
+	# pelagic	seawater
 
 # Synonym
   xsyn sn ocean
