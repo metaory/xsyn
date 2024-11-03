@@ -1,39 +1,62 @@
 #!/bin/bash
 
-(("$#")) || exit 1
-
 URL='https://api.datamuse.com'
 MAX="${XSYN_MAX:-80}"
-QRY=("$@")
-OFS=1
-SEL=$1
 
 mkdir -p /tmp/xsyn &>/dev/null || :
 
-declare -A OPTS=(
-  [ml]=ml
-  [sn]=rel_syn
-  [nn]=rel_jja
-  [aj]=rel_jjb
-)
-
-grep -qv "$1" <<<"${!OPTS[@]}" && {
-  SEL=ml
-  OFS=0
+function xc_help {
+  echo
+  synopsis() { echo -e " \x1b[1;36m xsyn \x1b[3${1}m$2 \x1b[1;32m<...WORD> \x1b[0m"; }
+  synopsis 2 "<COMMAND>"
+  synopsis 3 "<ml|sn|nn|aj>"
+  synopsis 3 "<meanlike|synonym|noune|adjective>"
+  echo -e "\x1b[22;35m  ─────────────────────────────────────────────────"
+  echo -e " \x1b[1;34m ▄▄▄▄"
+  guide() { echo -e "  \x1b[7;34m ${1} \x1b[27;33m ${2}"; }
+  guide ml meanlike
+  guide sn synonym
+  guide nn noune
+  guide aj adjective
+  echo -e " \x1b[1;34m ▀▀▀▀\n  \x1b[0m"
+  exit
 }
 
-I="${OPTS[$SEL]}"
-Q="${I}=$(tr ' ' '+' <<<"${QRY[@]:$OFS}")"
-U="${URL}/words?${Q}&max=$MAX"
-J='map(.word)|sort_by(length)|map(.|gsub("[ ]";"_")|(length|tostring)+" "+.)[]'
-# 'map(.word)|sort_by(length)[]|gsub("[ ]";"_")'
+declare S
+declare -A O=(
+  [ml]=ml
+  [meanlike]=ml
+  [sn]=rel_syn
+  [synonym]=rel_syn
+  [nn]=rel_jja
+  [noun]=rel_jja
+  [aj]=rel_jjb
+  [adjective]=rel_jjb
+)
 
-curl -s "$U" |
+case "$1" in
+ml | sn | nn | aj)
+  S="${O[$1]}"
+  shift
+  Q="$*"
+  Q="${Q// /+}"
+  ;;
+*) xc_help ;;
+esac
+
+echo -e "\x1b[36m"
+
+curl -s "${URL}/words?${S}=${Q}&max=$MAX" |
   jq '.' |
   tee /tmp/xsyn/raw.json |
-  jq -r "$J" |
+  jq -r 'map(.word)|sort_by(length)|map(.|gsub("[ ]";"_")|(length|tostring)+" "+.)[]' |
   tee /tmp/xsyn/fmt |
   column |
+  tee /tmp/xsyn/pre |
   yank -- xsel --clipboard --trim
+
+cat </tmp/xsyn/pre
+
+echo -e "\n=> \x1b[1;32m $(xsel --clipboard --output) \n\x1b[0m"
 
 # vim: ft=bash

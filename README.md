@@ -1,9 +1,10 @@
-<div align=center>
-  <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="168px">
+<div align="center">
   <h2>XSYN</h2>
+  <img src="/assets/root.svg" width="50%" />
+  <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="168px">
 </div>
 
-> [!Note]
+> [!NOTE]
 > No API Key needed
 
 ---
@@ -15,7 +16,14 @@ NAME
 
 
 SYNOPSIS
-  xsyn [<TYPE>] <WORD>
+	xsyn <COMMAND> <...WORD>
+	xsyn <ml|sn|nn|aj> <...WORD>
+	xsyn <meanlike|synonym|noune|adjective> <...WORD>
+	─────────────────────────────────────────────────
+	 ml  meanlike
+	 sn  synonym
+	 nn  noune
+	 aj  adjective
 
 
 DESCRIPTION
@@ -47,7 +55,7 @@ EXAMPLES
 # MeanLike
   xsyn ml ocean
     # same as
-  xsyn ocean
+  xsyn meanlike ocean
 	# sea		oceanography	waters
 	# expanse	marine		seaway
 	# oceanic	midstream	bucket
@@ -95,18 +103,21 @@ EXAMPLES
 
 ---
 
-## Requirements
+Requirements
+------------
 
 - [jq](https://archlinux.org/packages/?q=jq)
 - [curl](https://github.com/curl/curl)
 - [sort](https://archlinux.org/packages/?q=sort)
 - [uniq](https://archlinux.org/packages/?q=uniq)
 - [yank](https://archlinux.org/packages/?q=yank)
+- [xsel](https://archlinux.org/packages/?q=xsel)
 - [column](https://archlinux.org/packages/?q=column)
 
 ---
 
-## Installation
+Installation
+------------
 
 - clone repo
 - give execution permissions
@@ -129,7 +140,7 @@ ln -svf $PWD/xsyn /usr/bin/xsyn
 xsyn sn void
 	# null avoid eliminate empty vitiate annul quash nugatory invalid nullify evacuate vacancy invalidate emptiness nullity nothingness
 
-xsyn void
+xsyn ml void
 	# vacancy emptiness nothingness empty null nullity invalid invalidate nugatory nullify vitiate avoid annul quash eliminate evacuate vacuum devoid nil useless
 ```
 
@@ -142,14 +153,16 @@ xsyn void 7
 ```
 -->
 
-# TODO
+<!-- # TODO
 
 - [ ] Makefile
 - [ ] Pager mod
 - [x] Fallback providers
+-->
 
 ---
 
-## License
+License
+-------
 
 [MIT](LICENSE)
