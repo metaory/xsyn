@@ -30,7 +30,7 @@ DESCRIPTION
 
 
 TYPES
-  ml 	MeanLike [DEFAULT] (OneLook)
+  ml 	MeanLike (OneLook)
 		# ocean → sea expanse oceanic seabed seafloor oceanographic pelagic oceanography marine midstream coast pond water seawater waters seaway bucket marina seagoing seafaring
 
   sn 	Synonym (WordNet synset)
@@ -47,7 +47,6 @@ ENVIRONMENT VARIABLES ~
 	XSYN_MAX  |  Maximum number of results to return,
 	               not to exceed 1000. (default: 80)
 
-XSYN_MAX
 .
 EXAMPLES
 
