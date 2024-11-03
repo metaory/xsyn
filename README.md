@@ -1,7 +1,6 @@
 <div align="center">
   <h2>XSYN</h2>
-  <img src="/assets/root.svg" width="50%" />
-  <img alt="logo-of-xsyn" src="https://raw.githubusercontent.com/metaory/xsyn/master/.github/assets/ico.png" width="168px">
+  <img src=".github/assets/icon.svg" width="50%" />
 </div>
 
 > [!NOTE]
