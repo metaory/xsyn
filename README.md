@@ -106,11 +106,6 @@ Requirements
 
 - [jq](https://archlinux.org/packages/?q=jq)
 - [curl](https://github.com/curl/curl)
-- [sort](https://archlinux.org/packages/?q=sort)
-- [uniq](https://archlinux.org/packages/?q=uniq)
-- [yank](https://archlinux.org/packages/?q=yank)
-- [xsel](https://archlinux.org/packages/?q=xsel)
-- [column](https://archlinux.org/packages/?q=column)
 
 ---
 

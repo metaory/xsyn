@@ -1,6 +1,6 @@
 #!/bin/bash
 
-URL='https://api.datamuse.com'
+BASE='https://api.datamuse.com'
 MAX="${XSYN_MAX:-80}"
 
 mkdir -p /tmp/xsyn &>/dev/null || :
@@ -36,27 +36,20 @@ declare -A O=(
 
 case "$1" in
 ml | sn | nn | aj)
-  S="${O[$1]}"
-  shift
+  S="${O[$1]}"; shift
   Q="$*"
   Q="${Q// /+}"
   ;;
 *) xc_help ;;
 esac
 
-echo -e "\x1b[36m"
+curl -s "${BASE}/words?${S}=${Q}&max=$MAX" \
+  | jq -r 'map(.word)
+  | sort_by(length)
+  | map([(. | length | tostring | "00" + .)[-2:], .])[]
+  | @tsv' \
+  | tee /tmp/xsyn/run
 
-curl -s "${URL}/words?${S}=${Q}&max=$MAX" |
-  jq '.' |
-  tee /tmp/xsyn/raw.json |
-  jq -r 'map(.word)|sort_by(length)|map(.|gsub("[ ]";"_")|(length|tostring)+" "+.)[]' |
-  tee /tmp/xsyn/fmt |
-  column |
-  tee /tmp/xsyn/pre |
-  yank -- xsel --clipboard --trim
-
-cat </tmp/xsyn/pre
-
-echo -e "\n=> \x1b[1;32m $(xsel --clipboard --output) \n\x1b[0m"
+xc_help
 
 # vim: ft=bash
